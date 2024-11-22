@@ -10,6 +10,9 @@ namespace BalloonShootDemo
         private SpriteBatch _spriteBatch;
 
         Texture2D _bgSprite;
+        Texture2D _crossSprite;
+
+        MouseState _mouseState;
 
         public BalloonShootGame()
         {
@@ -33,6 +36,7 @@ namespace BalloonShootDemo
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _bgSprite = Content.Load<Texture2D>("assets/bg-2");
+            _crossSprite = Content.Load<Texture2D>("assets/crosshair-2");
 
             // TODO: use this.Content to load your game content here
         }
@@ -44,6 +48,8 @@ namespace BalloonShootDemo
 
             // TODO: Add your update logic here
 
+            _mouseState = Mouse.GetState();
+
             base.Update(gameTime);
         }
 
@@ -51,7 +57,11 @@ namespace BalloonShootDemo
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+
             _spriteBatch.Draw(_bgSprite, new Vector2(0,0), Color.AliceBlue);
+
+            _spriteBatch.Draw(_crossSprite, new Vector2(_mouseState.X, _mouseState.Y), Color.AliceBlue);
+
             _spriteBatch.End();
 
             // TODO: Add your drawing code here
