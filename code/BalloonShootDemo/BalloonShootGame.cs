@@ -9,9 +9,15 @@ namespace BalloonShootDemo
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        Texture2D _bgSprite;
+
         public BalloonShootGame()
         {
             _graphics = new GraphicsDeviceManager(this);
+
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -26,6 +32,7 @@ namespace BalloonShootDemo
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _bgSprite = Content.Load<Texture2D>("assets/bg-2");
 
             // TODO: use this.Content to load your game content here
         }
@@ -43,6 +50,9 @@ namespace BalloonShootDemo
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(_bgSprite, new Vector2(0,0), Color.AliceBlue);
+            _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
