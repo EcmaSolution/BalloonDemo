@@ -22,7 +22,7 @@ namespace BalloonShootDemo
             _graphics.PreferredBackBufferHeight = 720;
 
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
@@ -35,7 +35,7 @@ namespace BalloonShootDemo
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _bgSprite = Content.Load<Texture2D>("assets/bg-2");
+            _bgSprite = Content.Load<Texture2D>("assets/bg-4");
             _crossSprite = Content.Load<Texture2D>("assets/crosshair-2");
 
             // TODO: use this.Content to load your game content here
@@ -60,7 +60,14 @@ namespace BalloonShootDemo
 
             _spriteBatch.Draw(_bgSprite, new Vector2(0,0), Color.AliceBlue);
 
-            _spriteBatch.Draw(_crossSprite, new Vector2(_mouseState.X, _mouseState.Y), Color.AliceBlue);
+
+            var width = 50;
+            var height = 50;
+
+            var centerX = _mouseState.X - (width / 2);
+            var centerY = _mouseState.Y - (height / 2);
+
+            _spriteBatch.Draw(_crossSprite, new Rectangle(centerX, centerY, width, height), Color.AliceBlue);
 
             _spriteBatch.End();
 
